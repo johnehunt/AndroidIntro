@@ -1,2 +1,2 @@
 # john.hunt10-gmail.com
-AndroidIntro
+Sample applications supporting an introductory Android Java Programming course.

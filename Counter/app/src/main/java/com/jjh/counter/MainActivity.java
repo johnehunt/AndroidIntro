@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Obtain reference to textview label
-        text = (TextView) findViewById(R.id.textView);
+        // Obtain reference to text view label
+        text = findViewById(R.id.textView);
 
         // Set up buttons with handlers
-        Button addButton = (Button) findViewById(R.id.add);
+        Button addButton = findViewById(R.id.add);
         addButton.setOnClickListener(new AddButtonHandler());
 
-        Button subButton = (Button) findViewById(R.id.sub);
+        Button subButton = findViewById(R.id.sub);
         subButton.setOnClickListener(new SubtractButtonHandler());
     }
 }

@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class SampleService2 extends Service {
-	boolean isRunning = true;
+	private boolean isRunning = true;
 
 	@Override
 	public IBinder onBind(Intent arg0) {

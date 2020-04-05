@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView);
-        Button btnStartService = (Button) findViewById(R.id.startService);
+        textView = findViewById(R.id.textView);
+        Button btnStartService = findViewById(R.id.startService);
         btnStartService.setOnClickListener(new StartButtonHandler());
-        Button btnStopService = (Button) findViewById(R.id.stopService);
+        Button btnStopService = findViewById(R.id.stopService);
         btnStopService.setOnClickListener(new StopButtonHandler());
         Log.d("SD - MainActivity", "onCreate()");
     }

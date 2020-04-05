@@ -1,5 +1,6 @@
 package com.jjh.servicedemo2;
 
+import android.Manifest;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -9,14 +10,7 @@ public class SampleService2 extends Service {
 	private boolean isRunning = true;
 
 	@Override
-	public IBinder onBind(Intent arg0) {
-		return null;
-	}
-
-	@Override
-	public void onCreate() {
-		super.onCreate();
-	}
+	public IBinder onBind(Intent arg0) { return null; }
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
@@ -35,14 +29,16 @@ public class SampleService2 extends Service {
 
 	class MyRunnable implements Runnable {
 		public void run() {
-			Log.d("SD - SampleService2", "Starting thread");
+			Log.d("SD - MyRunnable", "Starting thread");
 			for (int i = 0; (i < 10) & isRunning; i++) { 
 				try {
-					Thread.sleep(1000); // five seconds
-					Intent serviceBroadcastintent = new Intent("com.jjh.android.SampleService");
+					// Broadcast the message
+					Log.d("SD - MyRunnable","Broadcasting Message");
+					Intent intent = new Intent("com.jjh.servicedemo2.SampleService2");
 					String msg = "Hello " + i;
-					serviceBroadcastintent.putExtra("serviceData", msg);
-					sendBroadcast(serviceBroadcastintent);
+					intent.putExtra("serviceData", msg);
+					sendBroadcast(intent);
+					Thread.sleep(5000); // five seconds
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

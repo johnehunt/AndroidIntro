@@ -20,9 +20,15 @@
         <service android:name=".SampleService2">
         </service>
 
-        <receiver android:name=".SampleBroadcastReceiver">
+        <!-- Not used pre 8.0 - since this version
+             most implicit broadcasts need to be registered to dynamically
+             and not statically (in the manifest). -->
+        <!-- exported attribute tells the receiver that it can receive broadcasts
+             from outside the scope of the application -->
+        <receiver android:name=".SampleBroadcastReceiver" android:exported="true">
             <intent-filter>
-                <action android:name = "com.jjh.android.SampleService" />
+                <!-- The actions you wish to listen to, below is an example -->
+                <action android:name = "com.jjh.servicedemo2.SampleService2" />
             </intent-filter>
         </receiver>
 

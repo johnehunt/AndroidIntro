@@ -2,6 +2,7 @@ package com.jjh.servicedemo2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
         btnStartService.setOnClickListener(new StartButtonHandler());
         Button btnStopService = findViewById(R.id.stopService);
         btnStopService.setOnClickListener(new StopButtonHandler());
+
+        // Set up broadcast receiver - programmatically
+        // Required as of Android 8.0 (and above) since this version
+        // most implicit broadcasts need to be registered to dynamically
+        // and not statically (in the manifest).
+        IntentFilter filter = new IntentFilter("com.jjh.servicedemo2.SampleService2");
+        SampleBroadcastReceiver receiver = new SampleBroadcastReceiver();
+        registerReceiver(receiver, filter, null, null );
+
         Log.d("SD - MainActivity", "onCreate()");
     }
 
@@ -35,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 startService(sampleServiceIntent);
                 textView.setText("Started Service");
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), 1).show();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

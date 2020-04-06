@@ -30,15 +30,15 @@ public class MainActivity extends AppCompatActivity {
     private class DialButtonHandler implements View.OnClickListener {
         public void onClick(View v) {
             String myData = text1.getText().toString();
-            // Creates an Intent to trigger dialer
-            Intent myActivity2 = new Intent(Intent.ACTION_DIAL, Uri.parse(myData));
-            startActivity(myActivity2);
+            // Creates an Intent to trigger dialler
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(myData));
+            startActivity(intent);
         }
     }
 
     private class SearchButtonHandler implements View.OnClickListener {
         public void onClick(View v) {
-            // triggers searching
+            // triggers web search activity
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
             intent.putExtra(SearchManager.QUERY, "MG F Car");
             startActivity(intent);

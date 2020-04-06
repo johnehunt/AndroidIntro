@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class SearchButtonHandler implements View.OnClickListener {
         public void onClick(View v) {
-            // triggers seaching
+            // triggers searching
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
             intent.putExtra(SearchManager.QUERY, "MG F Car");
             startActivity(intent);

@@ -1,58 +1,66 @@
 package com.jjh.kittykat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.View.OnTouchListener;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
-
-/**
- * Activities are things that can interact with a user. Typically
- * responsible for
- * creating a window in which you can place your UI components.
- */
 public class MainActivity extends AppCompatActivity {
-
-    private int count = 0;
-    private TextView text;
-
-    /**
-     * Used to set up (initialize) the display after the App is
-     * created.
-     */
-
-    /**
-     * Invoked when the user clicks on the button.
-     */
-    class AddButtonHandler implements OnClickListener {
-        public void onClick(View view) {
-            count++;
-            text.setText(count +"");
-        }
-    }
-
-    class SubtractButtonHandler implements OnClickListener {
-        public void onClick(View view) {
-            count--;
-            text.setText(count +"");
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        text = (TextView) findViewById(R.id.textView);
+        GestureHandler handler = new GestureHandler();
 
-        Button button = (Button) findViewById(R.id.add);
-        button.setOnClickListener(new AddButtonHandler());
+        final GestureDetectorCompat detector = new GestureDetectorCompat(this, handler);
+        detector.setOnDoubleTapListener(handler);
 
-        button = (Button) findViewById(R.id.sub);
-        button.setOnClickListener(new SubtractButtonHandler());
+        ImageButton image = findViewById(R.id.image);
+        image.setOnTouchListener(new OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent me) {
+                return detector.onTouchEvent(me);
+            }
+        });
+    }
+
+    /**
+     * SimpleOneGestureListener is a convenience class used to provide default
+     * implementations for all methods in the OnGestureListener interface
+     * and the onDoubleTapListener interface:
+     *
+     * OnGestureListener used to notify when gestures occur.
+     * OnDoubleTapListener is used to notify when a double-tap occurs.
+     *
+     */
+    class GestureHandler extends GestureDetector.SimpleOnGestureListener {
+
+        /**
+         * Notified of a fling event when it occurs with the initial on down
+         * MotionEvent and the matching up MotionEvent.
+         */
+        public boolean onFling(MotionEvent event1, MotionEvent event2,
+                               float velocityX, float velocityY) {
+            Toast.makeText(MainActivity.this, "Purrr", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+        }
+
+        /**
+         * Invoked when a double-tap gesture occur.
+         */
+        public boolean onDoubleTap(MotionEvent e) {
+            Toast.makeText(MainActivity.this, "Ouch!", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+        }
 
     }
 

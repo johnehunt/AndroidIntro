@@ -10,8 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
-public class FriendsContentProvider extends ContentProvider 
-                                       implements DatabaseConstants {
+public class FriendsContentProvider extends ContentProvider {
+
+	private static final String TABLE_NAME = "friends";
 
 	public static final String AUTHORITY = 
 		               "com.jjh.android.provider.FriendsContentProvider";

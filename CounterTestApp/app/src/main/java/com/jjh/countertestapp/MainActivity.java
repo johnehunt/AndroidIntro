@@ -1,21 +1,17 @@
 package com.jjh.countertestapp;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     // Instance variable to hold reference to counter
     // and text view (label) used to display the count
-    private Counter counter = new Counter();
+    private final Counter counter = new Counter();
     private TextView text;
     private TextView message;
 

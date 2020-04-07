@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
     private EditText time;
     private TextView finalResult;
 
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         time = findViewById(R.id.in_time);
-        button = findViewById(R.id.btn_run);
+        Button button = findViewById(R.id.btn_run);
         finalResult = findViewById(R.id.tv_result);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -33,24 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
     private class AsyncTaskRunner extends AsyncTask<String, String, String> {
 
-        private String resp;
         private ProgressDialog progressDialog;
 
         @Override
         protected String doInBackground(String... params) {
             publishProgress("Sleeping..."); // Calls onProgressUpdate()
+            String response = "";
             try {
                 int time = Integer.parseInt(params[0])*1000;
                 Thread.sleep(time);
-                resp = "Slept for " + params[0] + " seconds";
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                resp = e.getMessage();
+                response = "Slept for " + params[0] + " seconds";
             } catch (Exception e) {
                 e.printStackTrace();
-                resp = e.getMessage();
+                response = e.getMessage();
             }
-            return resp;
+            return response;
         }
 
 
@@ -73,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... text) {
             finalResult.setText(text[0]);
-
         }
     }
 }

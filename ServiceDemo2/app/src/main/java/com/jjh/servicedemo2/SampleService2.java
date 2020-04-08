@@ -14,7 +14,7 @@ public class SampleService2 extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d("SD - SampleService2", "onStartCommand()");
-		Thread thread = new Thread(new MyRunnable());
+		Thread thread = new Thread(new Broadcaster());
 		thread.start();
 		return super.onStartCommand(intent, flags, startId);
 	}
@@ -26,14 +26,14 @@ public class SampleService2 extends Service {
 		isRunning = false;
 	}
 
-	class MyRunnable implements Runnable {
+	class Broadcaster implements Runnable {
 		public void run() {
-			Log.d("SD - MyRunnable", "Starting thread");
+			Log.d("SD - Broadcaster", "Starting thread");
 			for (int i = 0; (i < 10) & isRunning; i++) { 
 				try {
 					// Broadcast the message
-					Log.d("SD - MyRunnable","Broadcasting Message");
-					Intent intent = new Intent("com.jjh.servicedemo2.SampleService2");
+					Log.d("SD - Broadcaster","Broadcasting Message");
+					Intent intent = new Intent("com.jjh.servicedemo.Message");
 					String msg = "Hello " + i;
 					intent.putExtra("serviceData", msg);
 					sendBroadcast(intent);

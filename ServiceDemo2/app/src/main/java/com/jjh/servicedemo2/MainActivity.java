@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // Required as of Android 8.0 (and above) since this version
         // most implicit broadcasts need to be registered to dynamically
         // and not statically (in the manifest).
-        IntentFilter filter = new IntentFilter("com.jjh.servicedemo2.SampleService2");
+        IntentFilter filter = new IntentFilter("com.jjh.servicedemo.Message");
         SampleBroadcastReceiver receiver = new SampleBroadcastReceiver();
         registerReceiver(receiver, filter, null, null );
 

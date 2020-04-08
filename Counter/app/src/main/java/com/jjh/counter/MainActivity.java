@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
                                                                      datePickerListener,
-                                                                2020, 04, 01);
+                                                                2020, 4, 1);
             datePickerDialog.show();
 
         }
@@ -140,21 +140,21 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                String msg = "YES " + Integer.toString(whichButton);
+                                String msg = "YES " + whichButton;
                                 message.setText(msg);
                             }
                         });
                 builder.setNeutralButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                String msg = "CANCEL " + Integer.toString(whichButton);
+                                String msg = "CANCEL " + whichButton;
                                 message.setText(msg);
                             }
                         });
                 builder.setNegativeButton("NO",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                String msg = "NO " + Integer.toString(whichButton);
+                                String msg = "NO " + whichButton;
                                 message.setText(msg);
                             }
                         });

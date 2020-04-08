@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 stopService(sampleServiceIntent);
                 textView.setText("Stopped Service");
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), 1).show();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

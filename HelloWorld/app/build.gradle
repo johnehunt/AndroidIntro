@@ -1,23 +1,56 @@
 apply plugin: 'com.android.application'
 
 android {
+    /**
+     * compileSdkVersion specifies the Android API level Gradle should use to
+     * compile your app. This means your app can use the API features included in
+     * this API level and lower.
+     *
+     * buildToolsVersion specifies the version of the SDK build tools, command-line
+     * utilities, and compiler that Gradle should use to build your app. You need to
+     * download the build tools using the SDK Manager.
+     */
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    /**
+     * The defaultConfig {} block encapsulates default settings and entries for all
+     * build variants.
+     */
     defaultConfig {
+        /**
+         * applicationId uniquely identifies the package for publishing.
+         * */
         applicationId "com.jjh.helloworld"
+
+        // Defines the minimum API level required to run the app.
         minSdkVersion 28
+
+        // Specifies the API level used to test the app.
         targetSdkVersion 29
+
+        // Defines the version number of your app.
         versionCode 1
+
+        // Defines a user-friendly version name for your app.
         versionName "1.0"
 
+        // Runner to use with Android Tests
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    /**
+     * The buildTypes {} block is where you can configure multiple build types.
+     * By default, the build system defines two build types: debug and release.
+     * Debug  build (defualt in dev) includes debugging tools and is signed with
+     * the debug key. The releasebuild type applies Proguard settings and is not
+     * signed by default.
+     */
     buildTypes {
         release {
             buildConfigField("String", "MY_INFO", "\"MyInfo\"")
-            minifyEnabled true
+            minifyEnabled true // Enables code shrinking for the release build type.
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -25,8 +58,28 @@ android {
         }
     }
 
+    /**
+     * The productFlavors {} block is where you can configure multiple product
+     * flavors. This allows you to create different versions of your app that can
+     * override defaultConfig {} with their own settings.
+     *
+     * productFlavors {
+     *     free {
+     *       applicationId 'com.jjh.helloworld.free'
+     *     }
+     *
+     *     paid {
+     *       applicationId 'com.jjh.helloworld.paid'
+     *     }
+     *   }
+     */
+
 }
 
+/**
+ * The dependencies {} block in the module-level build configuration file
+ * only specifies dependencies required to build the module itself.
+ */
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

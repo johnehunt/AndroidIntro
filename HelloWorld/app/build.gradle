@@ -1,5 +1,15 @@
+/**
+ * The first line in the build configuration applies the Android plugin for
+ * Gradle to this build and makes the android {} block available to specify
+ * Android-specific build options.
+ */
+
 apply plugin: 'com.android.application'
 
+/**
+ * The android {} block is where you configure all your Android-specific
+ * build options.
+ */
 android {
     /**
      * compileSdkVersion specifies the Android API level Gradle should use to

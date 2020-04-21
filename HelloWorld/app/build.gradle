@@ -59,12 +59,12 @@ android {
      */
     buildTypes {
         release {
-            buildConfigField("String", "MY_INFO", "\"MyInfo\"")
+            buildConfigField("String", "MY_INFO", "\"MyInfo\"") // Custom field add by developer
             minifyEnabled true // Enables code shrinking for the release build type.
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField("String", "MY_INFO", "\"MyInfo\"")
+            buildConfigField("String", "MY_INFO", "\"MyInfo\"") // Debug version fo custom field added
         }
     }
 
@@ -91,11 +91,14 @@ android {
  * only specifies dependencies required to build the module itself.
  */
 dependencies {
+    // Lists where to find jar files to include - under libs directory
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
     testImplementation 'junit:junit:4.12'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

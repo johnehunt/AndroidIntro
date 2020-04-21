@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+// Configuration for gradle build process
 buildscript {
     
     repositories {
@@ -16,14 +17,15 @@ buildscript {
     }
 }
 
+// Repositories to include in search for libraries
 allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
+// Custom task indicating how to clean the project
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

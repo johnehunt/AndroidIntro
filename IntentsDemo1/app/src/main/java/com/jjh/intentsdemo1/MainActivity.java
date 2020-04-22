@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,9 +21,6 @@ public class MainActivity extends AppCompatActivity {
         // Initialize dialier text field field
         diallerText = findViewById(R.id.editText);
 
-        // Set up the search button
-        Button searchButton = findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(new SearchButtonHandler());
     }
 
     // Handler method for DIal Button
@@ -35,14 +31,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Inner class iused to handle search button
-    class SearchButtonHandler implements View.OnClickListener {
-        public void onClick(View v) {
+    // Inner class used to handle search button
+    public void onSearchButtonClick(View v) {
             // triggers web search activity
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
             intent.putExtra(SearchManager.QUERY, "MG F Car");
             startActivity(intent);
-        }
     }
 
 }

@@ -7,17 +7,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int REQUEST_CODE = 222;
+    private final static int REQUEST_CODE = 222;
 
     private TextView label;
     private EditText text;
-    private Button pickContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +23,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         label = findViewById(R.id.label);
         text = findViewById(R.id.editText);
-        pickContact = findViewById(R.id.pickContact);
-        pickContact.setOnClickListener(new ClickHandler());
     }
 
-    private class ClickHandler implements View.OnClickListener {
-        public void onClick(View v) {
-            // Tell it that its requestCode (nickname) is 222
-            String myData = text.getText().toString();
-            Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse(myData));
-            startActivityForResult(intent, REQUEST_CODE);
-        }
+    public void onPickContactClick(View v) {
+        // Tell it that its requestCode (nickname) is 222
+        String myData = text.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse(myData));
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     protected void onActivityResult(int returnedRequestCode, int resultCode, Intent data) {

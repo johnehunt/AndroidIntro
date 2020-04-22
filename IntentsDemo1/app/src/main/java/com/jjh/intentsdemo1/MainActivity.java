@@ -12,31 +12,31 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText text1;
+    private EditText diallerText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        text1 = findViewById(R.id.editText);
 
-        // Set up the buttons
-        Button dialButton = findViewById(R.id.dialButton);
-        dialButton.setOnClickListener(new DialButtonHandler());
+        // Initialize dialier text field field
+        diallerText = findViewById(R.id.editText);
+
+        // Set up the search button
         Button searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new SearchButtonHandler());
     }
 
-    private class DialButtonHandler implements View.OnClickListener {
-        public void onClick(View v) {
-            String myData = text1.getText().toString();
-            // Creates an Intent to trigger dialler
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(myData));
-            startActivity(intent);
-        }
+    // Handler method for DIal Button
+    public void onDialButtonClick(View v) {
+        String myData = diallerText.getText().toString();
+        // Creates an Intent to trigger dialler
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(myData));
+        startActivity(intent);
     }
 
-    private class SearchButtonHandler implements View.OnClickListener {
+    // Inner class iused to handle search button
+    class SearchButtonHandler implements View.OnClickListener {
         public void onClick(View v) {
             // triggers web search activity
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);

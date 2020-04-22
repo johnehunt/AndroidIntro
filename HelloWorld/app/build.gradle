@@ -64,7 +64,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField("String", "MY_INFO", "\"MyInfo\"") // Debug version fo custom field added
+            buildConfigField("String", "MY_INFO", "\"MyDebugInfo\"") // Debug version fo custom field added
         }
     }
 

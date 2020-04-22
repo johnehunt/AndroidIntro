@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:onClick="onClickInvokeSubActivity"
         android:text="@string/invoke_sub_activity"
         android:textColor="#F60202"
         android:textColorHighlight="#0206F6"

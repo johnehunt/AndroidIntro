@@ -25,17 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         message = findViewById(R.id.message);
 
-        Button printButton = findViewById(R.id.printButton);
         Button stopServiceButon = findViewById(R.id.stopButton);
-        printButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Print Date button", "onClick()");
-                if (service != null) {
-                    message.setText(service.getDate().toString());
-                }
-            }
-        });
         stopServiceButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onPrintDataButtonClick(View v) {
+        Log.d("Print Date button", "onClick()");
+        if (service != null) {
+            message.setText(service.getDate().toString());
+        }
     }
 
     @Override

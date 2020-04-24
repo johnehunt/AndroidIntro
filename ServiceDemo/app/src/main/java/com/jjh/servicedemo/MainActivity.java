@@ -23,26 +23,26 @@ public class MainActivity extends AppCompatActivity {
         Log.d("<<ServiceDemo1Activity>>", "Ready!");
     }
 
-        public void onStartButtonClick(View v) {
-            try {
-                Log.d("<<ServiceDemo1Activity>>", "Starting service!");
-                sampleServiceIntent = new Intent(this, SampleService.class);
-                startService(sampleServiceIntent);
-                message.setText("Started Service");
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+    public void onStartButtonClick(View v) {
+        try {
+            Log.d("<<ServiceDemo1Activity>>", "Starting service!");
+            sampleServiceIntent = new Intent(this, SampleService.class);
+            startService(sampleServiceIntent);
+            message.setText("Started Service");
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
 
 
-        public void onStopButtonClick(View v) {
-            try {
-                Log.d("<<ServiceDemo1Activity>>", "Stopping service!");
-                stopService(sampleServiceIntent);
-                message.setText("Stopped Service");
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(), 1).show();
-            }
+    public void onStopButtonClick(View v) {
+        try {
+            Log.d("<<ServiceDemo1Activity>>", "Stopping service!");
+            stopService(sampleServiceIntent);
+            message.setText("Stopped Service");
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), 1).show();
         }
+    }
 
 }

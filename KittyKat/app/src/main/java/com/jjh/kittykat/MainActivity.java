@@ -6,6 +6,7 @@ import androidx.core.view.GestureDetectorCompat;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
@@ -29,6 +30,19 @@ public class MainActivity extends AppCompatActivity {
                 return detector.onTouchEvent(me);
             }
         });
+
+        /**
+         * Uncomment to try out pinch gesture
+         */
+//        final ScaleGestureDetector mScaleDetector =
+//                new ScaleGestureDetector(this, new MyPinchListener());
+//        image.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                mScaleDetector.onTouchEvent(event);
+//                return true;
+//            }
+//        });
     }
 
     /**
@@ -44,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Notified of a fling event when it occurs with the initial on down
-         * MotionEvent and the matching up MotionEvent.
+         * MotionEvent and the matching up MotionEvent. true indicates that
+         * the app has consumed the event - don't need to pass it on.
          */
         public boolean onFling(MotionEvent event1, MotionEvent event2,
                                float velocityX, float velocityY) {
@@ -62,6 +77,18 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    /**
+     * Example of Pinch gesture detection
+     */
+    class MyPinchListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            Toast.makeText(MainActivity.this, "PINCH! OUCH!", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+        }
     }
 
 }

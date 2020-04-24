@@ -29,9 +29,9 @@ public class SubActivity extends AppCompatActivity {
         data = myBundle.getString("msg");
     }
 
-    public void onCLickSendResponse(View v) {
+    public void onClickSendResponse(View v) {
             finish();
-        }
+    }
 
     @Override
     public void finish() {

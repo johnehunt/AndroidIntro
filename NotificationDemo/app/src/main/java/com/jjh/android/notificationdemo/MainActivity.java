@@ -21,27 +21,24 @@ public class MainActivity extends AppCompatActivity {
 
     private NotificationManager notificationManager;
 
-    class ButtonHandler implements View.OnClickListener {
+    public void onButtonClick(View v) {
 
-        @Override
-        public void onClick(View v) {
+        Log.d(TAG, "onButtonClick()");
 
-            Log.d(TAG, "onClick()");
+        int notificationID = 101;
 
-            int notificationID = 101;
+        Log.d(TAG, "onButtonClick() - setting up notification");
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("A Title")
+                .setContentText("This is an example : Hello There!")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setChannelId(CHANNEL_ID)
+                .setNumber(10)
+                .build();
 
-            Log.d(TAG, "onClick() - setting up notification");
-            Notification notification = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-                    .setContentTitle("A Title")
-                    .setContentText("This is an example : Hello There!")
-                    .setSmallIcon(android.R.drawable.ic_dialog_info)
-                    .setChannelId(CHANNEL_ID)
-                    .setNumber(10)
-                    .build();
+        Log.d(TAG, "onButtonClick() - triggering notification");
+        notificationManager.notify(notificationID, notification);
 
-            Log.d(TAG, "onClick() - triggering notification");
-            notificationManager.notify(notificationID, notification);
-        }
     }
 
     @Override
@@ -49,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
         setContentView(R.layout.activity_main);
-
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new ButtonHandler());
 
         createNotificationChannel();
     }

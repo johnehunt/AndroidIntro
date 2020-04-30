@@ -24,19 +24,27 @@
         android:textColor="#D0CFCF"
         android:textSize="36sp" />
 
-
     <Button
         android:id="@+id/pause"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:onClick="onPauseButtonClick"
         android:text="@string/pause" />
 
     <Button
         android:id="@+id/play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onPlayButtonClick"
         android:text="@string/play" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onStopButtonClick"
+        android:text="!" />
 
 
 </LinearLayout>

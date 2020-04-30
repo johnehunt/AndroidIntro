@@ -9,15 +9,20 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void onClickStartService(View v) {
-        Intent intent = new Intent(this, LoggerIntentService.class);
-        startService(intent);
-    }
+    // Lifecycle methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    // Button handler methods
+
+    public void onClickStartService(View v) {
+        // Create intent to launch service
+        Intent intent = new Intent(this, LoggerIntentService.class);
+        startService(intent);
     }
 
 }

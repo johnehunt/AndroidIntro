@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class BoundService extends Service {
 
+    private static final String TAG = "BoundService";
+
     // Binding support
     private IBinder binder = new DemoBinder();
 
@@ -20,35 +22,35 @@ public class BoundService extends Service {
     }
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d("BoundService", "onBind()");
+        Log.d(TAG, "onBind()");
         return binder;
     }
     @Override
     public void onRebind(Intent intent) {
-        Log.d("BoundService", "onRebind()");
+        Log.d(TAG, "onRebind()");
         super.onRebind(intent);
     }
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d("BoundService", "onUnbind()");
+        Log.d(TAG, "onUnbind()");
         return true;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("BoundService", "onCreate()");
+        Log.d(TAG, "onCreate()");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("BoundService", "onDestroy()");
+        Log.d(TAG, "onDestroy()");
     }
 
     // Functionality offered by service
     public Date getDate() {
-        Log.d("BoundService", "getDate()");
+        Log.d(TAG, "getDate()");
         return new Date();
     }
 

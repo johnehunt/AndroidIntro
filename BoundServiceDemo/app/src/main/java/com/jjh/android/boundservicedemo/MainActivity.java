@@ -15,32 +15,32 @@ import android.os.IBinder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     private BoundService service;
     private TextView message;
+    /** Defines callbacks for service binding, passed to bindService() */
+    private ServiceConnection connection = new ServiceConnectionHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("MainActivity", "onCreate()");
+        Log.d(TAG, "onCreate()");
         setContentView(R.layout.activity_main);
         message = findViewById(R.id.message);
+    }
 
-        Button stopServiceButon = findViewById(R.id.stopButton);
-        stopServiceButon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Stop Service button", "onClick()");
-                if (service != null) {
-                    unbindService(connection);
-                    service = null;
-                }
-            }
-        });
-
+    public void unbindServiceButtonClick(View v) {
+        Log.d("Unbind Service button", "onClick()");
+        if (service != null) {
+            // Disconnect from service - if only one 'may' stop
+            unbindService(connection);
+            service = null;
+        }
     }
 
     public void onPrintDataButtonClick(View v) {
-        Log.d("Print Date button", "onClick()");
+        Log.d(TAG, "onClick()");
         if (service != null) {
             message.setText(service.getDate().toString());
         }
@@ -49,28 +49,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("MainActivity", "onStart()");
+        Log.d(TAG, "onStart()");
+        // Create intent to bind to service
         Intent intent = new Intent(this, BoundService.class);
-        startService(intent);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("MainActivity", "onStop()");
+        Log.d(TAG, "onStop()");
         if (service != null) {
+            // Unbind from service is still using it
             unbindService(connection);
         }
     }
 
-    /** Defines callbacks for service binding, passed to bindService() */
-    private ServiceConnection connection = new ServiceConnection() {
+    // Inner classes
 
+    private class ServiceConnectionHandler implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder binder) {
-            Log.d("ServiceConnection", "onServiceConnected()");
+            Log.d(TAG, "onServiceConnected()");
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             BoundService.DemoBinder demoBinder = (BoundService.DemoBinder) binder;
             service = demoBinder.getService();
@@ -78,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName arg0) {
+        public void onServiceDisconnected(ComponentName name) {
         }
-    };
+    }
 
 }

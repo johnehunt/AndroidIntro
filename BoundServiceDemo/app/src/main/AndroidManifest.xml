@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.jjh.android.boundservicedemo.BoundService">
+        <service android:name=".BoundService">
         </service>
 
     </application>

@@ -24,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
         message = findViewById(R.id.message);
     }
 
+    // Button handler methods
+
     public void onStartButtonClick(View v) {
         try {
             Log.d(TAG, "Starting service!");
-            Intent startServiceIntent = new Intent(this, SampleService.class);
+            startServiceIntent = new Intent(this, SampleService.class);
             startService(startServiceIntent);
             message.setText("Started Service");
         } catch (Exception e) {

@@ -12,36 +12,37 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     private TextView message;
-    private Intent sampleServiceIntent;
+    private Intent startServiceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         message = findViewById(R.id.message);
-        Log.d("<<ServiceDemo1Activity>>", "Ready!");
     }
 
     public void onStartButtonClick(View v) {
         try {
-            Log.d("<<ServiceDemo1Activity>>", "Starting service!");
-            sampleServiceIntent = new Intent(this, SampleService.class);
-            startService(sampleServiceIntent);
+            Log.d(TAG, "Starting service!");
+            Intent startServiceIntent = new Intent(this, SampleService.class);
+            startService(startServiceIntent);
             message.setText("Started Service");
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
 
     public void onStopButtonClick(View v) {
         try {
-            Log.d("<<ServiceDemo1Activity>>", "Stopping service!");
-            stopService(sampleServiceIntent);
+            Log.d(TAG, "Stopping service!");
+            stopService(startServiceIntent);
             message.setText("Stopped Service");
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), 1).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

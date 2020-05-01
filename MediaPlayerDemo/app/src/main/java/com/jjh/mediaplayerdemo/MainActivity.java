@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Used by mediaplayer to communicates some
+     * info and/or warning about the media or its playback.
+     */
     class CustomMediaPlayerInfoListener implements MediaPlayer.OnInfoListener {
 
         @Override
@@ -150,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Called when Media player completes playing.
+     */
     class CustomerMediaPlayerOnCompletionListener implements MediaPlayer.OnCompletionListener {
 
         @Override

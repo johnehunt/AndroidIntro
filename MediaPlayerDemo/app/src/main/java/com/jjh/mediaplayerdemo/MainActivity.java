@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
     public void onPlayButtonClick(View v) {
         Toast.makeText(getApplicationContext(), "Playing sound", Toast.LENGTH_SHORT).show();
         try {
+            // Can throw IllegalStateException if it is called in an invalid state
             mediaPlayer.start();
-        } catch (Exception exp) {
+        } catch (IllegalStateException exp) {
             Toast.makeText(getApplicationContext(),
                     "Problem starting source " + exp.getMessage(),
                     Toast.LENGTH_LONG).show();
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStopButtonClick(View v) {
         Toast.makeText(getApplicationContext(), "Stopping sound", Toast.LENGTH_SHORT).show();
-        mediaPlayer.stop();
         try {
+            mediaPlayer.stop();
             // Need to prepare mediaPlayer
             // so that it can play another tune
             mediaPlayer.prepare();

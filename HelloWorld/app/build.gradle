@@ -53,8 +53,8 @@ android {
     /**
      * The buildTypes {} block is where you can configure multiple build types.
      * By default, the build system defines two build types: debug and release.
-     * Debug  build (defualt in dev) includes debugging tools and is signed with
-     * the debug key. The releasebuild type applies Proguard settings and is not
+     * Debug  build (default in dev) includes debugging tools and is signed with
+     * the debug key. The release build type applies Proguard settings and is not
      * signed by default.
      */
     buildTypes {
@@ -64,25 +64,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField("String", "MY_INFO", "\"MyDebugInfo\"") // Debug version fo custom field added
+            buildConfigField("String", "MY_INFO", "\"MyDebugInfo\"")
+            // Debug version fo custom field added
         }
+        beta {
+            applicationIdSuffix ".beta"
+            versionNameSuffix "-beta"
+        }
+
     }
+
+    // All flavors must now belong to a named flavor dimension
+    flavorDimensions "default"
 
     /**
      * The productFlavors {} block is where you can configure multiple product
      * flavors. This allows you to create different versions of your app that can
      * override defaultConfig {} with their own settings.
-     *
-     * productFlavors {
-     *     free {
-     *       applicationId 'com.jjh.helloworld.free'
-     *     }
-     *
-     *     paid {
-     *       applicationId 'com.jjh.helloworld.paid'
-     *     }
-     *   }
      */
+    productFlavors {
+        free {
+            dimension "default"
+            applicationId 'com.jjh.helloworld.free'
+        }
+
+        paid {
+            dimension "default"
+            applicationId 'com.jjh.helloworld.paid'
+        }
+    }
+
 
 }
 

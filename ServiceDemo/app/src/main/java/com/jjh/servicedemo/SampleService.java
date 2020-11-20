@@ -9,14 +9,15 @@ public class SampleService extends Service {
 
     private static final String TAG = "SampleService";
 
-    public IBinder onBind(Intent intent) {
-        Log.d(TAG, "onBind()");
-        return null;
-    }
-
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate()");
+    }
+
+    // Have to implement as abstract method in Service
+    public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind()");
+        return null;
     }
 
     @Override

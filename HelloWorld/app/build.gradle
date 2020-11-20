@@ -50,6 +50,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("my-release.keystore")
+            storePassword "password"
+            keyAlias "my-alias"
+            keyPassword "password"
+        }
+    }
+
     /**
      * The buildTypes {} block is where you can configure multiple build types.
      * By default, the build system defines two build types: debug and release.

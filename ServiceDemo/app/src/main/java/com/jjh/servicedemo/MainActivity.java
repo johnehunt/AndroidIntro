@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-
-
+    
     public void onStopButtonClick(View v) {
         try {
             Log.d(TAG, "Stopping service!");

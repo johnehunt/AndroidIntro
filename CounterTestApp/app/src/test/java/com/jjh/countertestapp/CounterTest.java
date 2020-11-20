@@ -1,5 +1,6 @@
 package com.jjh.countertestapp;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,6 +14,11 @@ public class CounterTest {
     @Before
     public void setup() {
         counter = new Counter();
+    }
+
+    @After
+    public void after() {
+        counter = null;
     }
 
     @Test

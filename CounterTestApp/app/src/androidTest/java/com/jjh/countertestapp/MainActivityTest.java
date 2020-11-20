@@ -18,7 +18,7 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule
-            = new ActivityTestRule<>(MainActivity.class);
+                 = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void increment_button_click() {
@@ -29,7 +29,19 @@ public class MainActivityTest {
 
         // Check that the text was changed.
         onView(withId(R.id.textView))
-                .check(matches(withText("1")));
+                .check(matches(withText("1"))); // matches is a ViewAssertion
+    }
+
+    @Test
+    public void decrement_button_click() {
+
+        // Simulate user clicking on add button
+        onView(withId(R.id.sub))            // withId(R.id.my_view) is a ViewMatcher
+                .perform(click());               // click() is a ViewAction
+
+        // Check that the text was changed.
+        onView(withId(R.id.textView))
+                .check(matches(withText("-1"))); // matches is a ViewAssertion
     }
 
 }
